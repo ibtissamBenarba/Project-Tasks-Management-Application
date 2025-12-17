@@ -1,6 +1,5 @@
 package com.ibtissam.backend.security;
 
-import com.ibtissam.backend.repository.UserRepository;
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
@@ -24,7 +23,6 @@ public class JwtAuthenticationFilter extends OncePerRequestFilter {
 
     @Override
     protected boolean shouldNotFilter(HttpServletRequest request) {
-        System.out.println("Filtering path: " + request.getServletPath());
         return request.getServletPath().startsWith("/auth");
     }
 
