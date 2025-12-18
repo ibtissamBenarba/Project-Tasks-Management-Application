@@ -56,6 +56,25 @@ public class TaskServiceImpl implements TaskService {
     }
 
     @Override
+    public TaskResponse getTaskById(Long taskId, String userEmail) {
+
+        Task task = taskRepository.findById(taskId)
+                .orElseThrow(() -> new RuntimeException("Task not found"));
+
+        if (!task.getProject().getUserEmail().equals(userEmail)) {
+            throw new RuntimeException("Unauthorized");
+        }
+
+        return new TaskResponse(
+                task.getId(),
+                task.getTitle(),
+                task.getDescription(),
+                task.getDueDate(),
+                task.isCompleted()
+        );
+    }
+
+    @Override
     public TaskResponse markTaskCompleted(Long taskId, String userEmail) {
         Task task = taskRepository.findById(taskId)
                 .orElseThrow(() -> new RuntimeException("Task not found"));

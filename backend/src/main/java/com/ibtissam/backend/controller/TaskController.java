@@ -38,6 +38,16 @@ public class TaskController {
         );
     }
 
+    @GetMapping("/{taskId}")
+    public ResponseEntity<TaskResponse> getTaskById(
+            @PathVariable Long taskId,
+            @AuthenticationPrincipal UserDetails userDetails) {
+
+        return ResponseEntity.ok(
+                taskService.getTaskById(taskId, userDetails.getUsername())
+        );
+    }
+
     @PatchMapping("/{taskId}/complete")
     public ResponseEntity<TaskResponse> completeTask(
             @PathVariable Long taskId,
