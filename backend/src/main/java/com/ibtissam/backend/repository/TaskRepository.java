@@ -8,4 +8,8 @@ import java.util.List;
 public interface TaskRepository extends JpaRepository<Task, Long> {
 
     List<Task> findByProjectId(Long projectId);
+
+    long countByProjectId(Long projectId);
+
+    long countByProjectIdAndCompletedTrue(Long projectId);
 }

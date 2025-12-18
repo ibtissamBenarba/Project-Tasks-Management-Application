@@ -14,4 +14,6 @@ public interface TaskService {
     TaskResponse markTaskCompleted(Long taskId, String userEmail);
 
     void deleteTask(Long taskId, String userEmail);
+
+    TaskResponse getTaskById(Long taskId, String userEmail);
 }
